@@ -36,8 +36,9 @@
 <body>
   <h1>OSW benchmarks</h1>
   <div id="controls">
-    <textarea id="preamble" rows="2" cols="48">
+    <textarea id="preamble" rows="5" cols="48">
 -- Pre-run setup
+PRAGMA locking_mode=exclusive;
 PRAGMA journal_mode=truncate;
     </textarea>
     <button id="start">Start</button>
