@@ -1,0 +1,19 @@
+{
+  "name": "osw-benchmarks",
+  "packageManager": "yarn@3.5.0",
+  "dependencies": {
+    "@sqlite.org/sqlite-wasm": "^3.41.2-build12"
+  },
+  "scripts": {
+    "start": "yarn web-dev-server"
+  },
+  "dependenciesMeta": {
+    "@sqlite.org/sqlite-wasm@3.41.2": {
+      "unplugged": true
+    }
+  },
+  "devDependencies": {
+    "@web/dev-server": "^0.2.1",
+    "comlink": "^4.4.1"
+  }
+}
