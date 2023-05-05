@@ -22,7 +22,11 @@
     }
 
     td:first-child {
-      min-width: 15em;
+      width: 15em;
+    }
+
+    th {
+      height: 36px;
     }
 
     td, th {
@@ -38,8 +42,11 @@
   <div id="controls">
     <textarea id="preamble" rows="5" cols="48">
 -- Pre-run setup
+PRAGMA page_size=8192;
+VACUUM;
 PRAGMA locking_mode=exclusive;
 PRAGMA journal_mode=truncate;
+PRAGMA cache_size=1024;
     </textarea>
     <button id="start">Start</button>
   </div>

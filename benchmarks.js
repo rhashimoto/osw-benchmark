@@ -9,9 +9,10 @@ const benchmarksReady = Promise.all(Array.from(new Array(16), (_, i) => {
 document.getElementById('start').addEventListener('click', async event => {
   event.target.disabled = true;
   document.getElementById('error').textContent = '';
+
+  const worker = new Worker('./worker.js', { type: 'module' });
+  const workerProxy = Comlink.wrap(worker);
   try {
-    const worker = new Worker('./worker.js', { type: 'module' });
-    const workerProxy = Comlink.wrap(worker);
     await workerProxy.prepare();
 
     // @ts-ignore
@@ -40,5 +41,6 @@ document.getElementById('start').addEventListener('click', async event => {
   } finally {
     // @ts-ignore
     event.target.disabled = false;
+    worker.terminate();
   }
 });
