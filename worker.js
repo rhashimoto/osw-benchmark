@@ -27,16 +27,19 @@ class Database {
   query(statements) {
     const results = [];
     for (const statement of statements) {
-      const output = {
-        columns: [],
-        rows: []
-      };
-      this.#db.exec(statement, {
-        columnNames: output.columns,
-        resultRows: output.rows
-      });
-      if (output.columns.length) {
-        results.push(output)
+      const stmt = this.#db.prepare(statement);
+      const rows = [];
+      try {
+        while (stmt.step()) {
+          rows.push(stmt.get([]));
+        }
+        
+        if (stmt.columnCount) {
+          const columns = stmt.getColumnNames();
+          results.push({ columns, rows });
+        }
+      } finally {
+        stmt.finalize();
       }
     }
     return results;
