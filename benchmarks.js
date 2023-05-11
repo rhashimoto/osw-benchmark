@@ -17,7 +17,7 @@ document.getElementById('start').addEventListener('click', async event => {
 
     // @ts-ignore
     const preamble = document.getElementById('preamble').value;
-    await workerProxy.query([preamble]);
+    await workerProxy.query(preamble.split(';').filter(s => s.trim()));
 
     const output = Array.from(document.getElementsByTagName('tr'));
     const th = document.createElement('th');
